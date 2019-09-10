@@ -15,7 +15,8 @@ import {FormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ToastrModule} from 'ngx-toastr';
 
-
+// let baseUrl;
+// baseUrl = environment.backendUrl;
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,12 +33,12 @@ import {ToastrModule} from 'ngx-toastr';
     AppRoutingModule,
     AuthllizerModule.forRoot({
       adapter: BackendAdapter.extend({
-        baseUrl: `${environment.backendUrl}/rest-auth/bitbucket/`
+        baseUrl: `${environment.backendUrl}/rest-auth/`
       }),
-      interceptList: [environment.backendUrl],
-      providers:{
+      // interceptList: [environment.backendUrl],
+      providers: {
         bitbucket: BitbucketOAuth2.extend({
-          clientId: 'Your_Bitbucket_Client_Id '
+          clientId: '2PrASg2PF9UhJBWnkx'
         }),
       }
     })
