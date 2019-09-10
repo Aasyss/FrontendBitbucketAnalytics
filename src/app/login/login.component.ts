@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {Authllizer, OAuth2Provider} from '@authllizer/core';
+import {Authllizer} from '@authllizer/core';
 import {ToastrService} from 'ngx-toastr';
 import {Router} from '@angular/router';
-import {HttpErrorResponse} from '@angular/common/http';
+import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
+import {CookieService} from 'ngx-cookie-service';
+import {getToken} from 'codelyzer/angular/styles/cssLexer';
 
 export interface ISignInUser {
   email?: string;
@@ -17,7 +19,8 @@ export interface ISignInUser {
 export class LoginComponent implements OnInit {
   user: ISignInUser = {};
 
-  constructor(private auth: Authllizer, private toastr: ToastrService, private router: Router) { }
+  constructor(private auth: Authllizer, private toastr: ToastrService, private router: Router, public http: HttpClient) { }
+
 
   ngOnInit() {
   }
@@ -35,6 +38,9 @@ export class LoginComponent implements OnInit {
       });
   }
   authenticate(provider: string) {
+
+    // this.retrivetoken(this.auth.getToken());
+
 
     this.auth.authenticate(provider)
       .then(() => {

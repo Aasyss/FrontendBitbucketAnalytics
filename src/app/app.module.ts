@@ -38,7 +38,7 @@ import {ToastrModule} from 'ngx-toastr';
       // interceptList: [environment.backendUrl],
       providers: {
         bitbucket: BitbucketOAuth2.extend({
-          clientId: '2PrASg2PF9UhJBWnkx'
+          clientId: 'FWBxYSkhvFnNmuEkbw'
         }),
       }
     })
