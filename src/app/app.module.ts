@@ -14,6 +14,8 @@ import {HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ToastrModule} from 'ngx-toastr';
+import {SidebarModule} from 'ng-sidebar';
+import { SidebarComponent } from './sidebar/sidebar.component';
 
 // let baseUrl;
 // baseUrl = environment.backendUrl;
@@ -22,18 +24,22 @@ import {ToastrModule} from 'ngx-toastr';
     AppComponent,
     HomeComponent,
     LoginComponent,
-    NavbarComponent
+    NavbarComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
+    SidebarModule.forRoot(),
     ToastrModule.forRoot(),
     AppRoutingModule,
+
     AuthllizerModule.forRoot({
       adapter: BackendAdapter.extend({
-        baseUrl: `${environment.backendUrl}/rest-auth/`
+        baseUrl: `${environment.backendUrl}/rest-auth/`,
+
       }),
       // interceptList: [environment.backendUrl],
       providers: {
@@ -41,7 +47,8 @@ import {ToastrModule} from 'ngx-toastr';
           clientId: '2PrASg2PF9UhJBWnkx'
         }),
       }
-    })
+    }),
+    SidebarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
