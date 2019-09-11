@@ -2,9 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {Authllizer} from '@authllizer/core';
 import {ToastrService} from 'ngx-toastr';
 import {Router} from '@angular/router';
-import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
-import {CookieService} from 'ngx-cookie-service';
-import {getToken} from 'codelyzer/angular/styles/cssLexer';
+import {HttpClient, HttpErrorResponse} from '@angular/common/http';
+
 
 export interface ISignInUser {
   email?: string;
@@ -39,15 +38,12 @@ export class LoginComponent implements OnInit {
   }
   authenticate(provider: string) {
 
-    // this.retrivetoken(this.auth.getToken());
-
-
     this.auth.authenticate(provider)
       .then(() => {
 
         console.log('success');
         this.toastr.success('You have successfully signed in with ' + provider + '!');
-        this.router.navigateByUrl('home/');
+        this.router.navigateByUrl('/home');
       })
       .catch((response: Error | HttpErrorResponse) => {
         console.log('error');
