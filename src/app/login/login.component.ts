@@ -3,6 +3,7 @@ import {Authllizer, OAuth2Provider} from '@authllizer/core';
 import {ToastrService} from 'ngx-toastr';
 import {Router} from '@angular/router';
 import {HttpErrorResponse} from '@angular/common/http';
+import {Users} from '../shared/users';
 
 export interface ISignInUser {
   email?: string;
@@ -15,6 +16,7 @@ export interface ISignInUser {
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  users: Users[] = [];
   user: ISignInUser = {};
 
   constructor(private auth: Authllizer, private toastr: ToastrService, private router: Router) { }
@@ -38,10 +40,9 @@ export class LoginComponent implements OnInit {
 
     this.auth.authenticate(provider)
       .then(() => {
-
         console.log('success');
         this.toastr.success('You have successfully signed in with ' + provider + '!');
-        this.router.navigateByUrl('home/');
+        this.router.navigateByUrl('/dashboard');
       })
       .catch((response: Error | HttpErrorResponse) => {
         console.log('error');

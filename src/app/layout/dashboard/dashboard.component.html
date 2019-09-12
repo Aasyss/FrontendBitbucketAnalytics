@@ -1,0 +1,27 @@
+<div [@routerTransition]>
+    <h2 class="text-muted">Repositories <small>Overview</small></h2>
+  <div class="page-header">
+    <hr>
+  </div>
+  <div class="row">
+<!--    <div *ngFor="let repo of repo">-->
+<!--    </div>-->
+    <div [routerLink]='["repository"]' *ngFor="let repo of repo" class="col-sm-3">
+      <div class="card text-white bg-dark mb-3">
+        <div class="card-header card-title">
+          <img class="card-img-overlay"  src="https://p7.hiclipart.com/preview/335/521/74/jira-technology-roadmap-computer-software-workflow-bitbucket-others.jpg" alt="Avatar image" style="height: 90px; width: 90px; float: left;">
+          <p style="font-size: 1vw; float: right;" class="font-weight-bold text-white text-uppercase ">{{repo.name}}</p>
+<!--          <h4 style="float: right;">{{repo.name}}</h4>-->
+          </div>
+        <div class="card-body">
+
+          <h5 class="card-text ">Repository General Details</h5>
+          <p>Created On: {{repo.created_on}}</p>
+          <p>Owner: {{repo.owner.nickname}}</p>
+<!--          <p>Commits: {{repo.links.commits.href}}</p>-->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

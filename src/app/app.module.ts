@@ -15,7 +15,7 @@ import {FormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ToastrModule} from 'ngx-toastr';
 import {SidebarModule} from 'ng-sidebar';
-import { SidebarComponent } from './sidebar/sidebar.component';
+import {LanguageTranslationModule} from './shared/modules/language-translation/language-translation.module';
 
 // let baseUrl;
 // baseUrl = environment.backendUrl;
@@ -25,7 +25,6 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     HomeComponent,
     LoginComponent,
     NavbarComponent,
-    SidebarComponent
   ],
   imports: [
     BrowserModule,
@@ -35,19 +34,20 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     SidebarModule.forRoot(),
     ToastrModule.forRoot(),
     AppRoutingModule,
-
+    HttpClientModule,
+    LanguageTranslationModule,
     AuthllizerModule.forRoot({
       adapter: BackendAdapter.extend({
-        baseUrl: `${environment.backendUrl}/rest-auth/`,
-
+        baseUrl: `${environment.backendUrl}/rest-auth/`
       }),
       // interceptList: [environment.backendUrl],
       providers: {
         bitbucket: BitbucketOAuth2.extend({
-          clientId: '2PrASg2PF9UhJBWnkx'
+          clientId: 'FWBxYSkhvFnNmuEkbw'
         }),
       }
     }),
+
     SidebarModule
   ],
   providers: [],
