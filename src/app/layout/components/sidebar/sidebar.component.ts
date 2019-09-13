@@ -12,6 +12,8 @@ export class SidebarComponent implements OnInit {
     collapsed: boolean;
     showMenu: string;
     pushRightClass: string;
+    hideElement = true;
+    showElement = false;
 
     @Output() collapsedEvent = new EventEmitter<boolean>();
 
@@ -25,6 +27,16 @@ export class SidebarComponent implements OnInit {
                 this.toggleSidebar();
             }
         });
+      this.router.events.subscribe((event) => {
+        if (event instanceof NavigationEnd && event.url === '/dashboard/repository'){
+          this.hideElement = false;
+        }
+      });
+      this.router.events.subscribe((event) => {
+        if (event instanceof NavigationEnd && event.url === '/dashboard/repository'){
+          this.showElement = true;
+        }
+      });
     }
 
     ngOnInit() {
@@ -60,18 +72,5 @@ export class SidebarComponent implements OnInit {
     toggleSidebar() {
         const dom: any = document.querySelector('body');
         dom.classList.toggle(this.pushRightClass);
-    }
-
-    rltAndLtr() {
-        const dom: any = document.querySelector('body');
-        dom.classList.toggle('rtl');
-    }
-
-    changeLang(language: string) {
-        this.translate.use(language);
-    }
-
-    onLoggedout() {
-        localStorage.removeItem('isLoggedin');
     }
 }

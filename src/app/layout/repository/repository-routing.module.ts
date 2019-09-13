@@ -6,8 +6,8 @@ import {RepositoryComponent} from './repository.component';
 const routes: Routes = [
   {
     path: '',
-    component: RepositoryComponent
-  }
+    component: RepositoryComponent,
+  },
 ];
 
 @NgModule({

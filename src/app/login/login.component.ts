@@ -16,7 +16,6 @@ export interface ISignInUser {
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  users: Users[] = [];
   user: ISignInUser = {};
 
   constructor(private auth: Authllizer, private toastr: ToastrService, private router: Router) { }
@@ -28,7 +27,7 @@ export class LoginComponent implements OnInit {
     this.auth.signIn(this.user)
       .then(() => {
         this.toastr.success('You have successfully signed in!');
-        this.router.navigateByUrl('/');
+        this.router.navigateByUrl('/dashboard');
         console.log('success');
       })
       .catch(({error,message,status}:HttpErrorResponse) => {
@@ -42,6 +41,7 @@ export class LoginComponent implements OnInit {
       .then(() => {
         console.log('success');
         this.toastr.success('You have successfully signed in with ' + provider + '!');
+        // localStorage.setItem('isLoggedin', 'true');
         this.router.navigateByUrl('/dashboard');
       })
       .catch((response: Error | HttpErrorResponse) => {
