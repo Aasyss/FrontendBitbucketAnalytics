@@ -28,12 +28,12 @@ export class SidebarComponent implements OnInit {
             }
         });
       this.router.events.subscribe((event) => {
-        if (event instanceof NavigationEnd && event.url === '/dashboard/repository'){
+        if (event instanceof NavigationEnd && ((event.url === '/dashboard/repository') || (event.url === '/dashboard/charts'))){
           this.hideElement = false;
         }
       });
       this.router.events.subscribe((event) => {
-        if (event instanceof NavigationEnd && event.url === '/dashboard/repository'){
+        if (event instanceof NavigationEnd && ((event.url === '/dashboard/repository') || (event.url === '/dashboard/charts'))){
           this.showElement = true;
         }
       });
