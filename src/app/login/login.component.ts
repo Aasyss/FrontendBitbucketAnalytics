@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {Authllizer} from '@authllizer/core';
+import {Authllizer, OAuth2Provider} from '@authllizer/core';
 import {ToastrService} from 'ngx-toastr';
 import {Router} from '@angular/router';
-import {HttpClient, HttpErrorResponse} from '@angular/common/http';
-
+import {HttpErrorResponse} from '@angular/common/http';
+import {Users} from '../shared/users';
 
 export interface ISignInUser {
   email?: string;
@@ -18,8 +18,7 @@ export interface ISignInUser {
 export class LoginComponent implements OnInit {
   user: ISignInUser = {};
 
-  constructor(private auth: Authllizer, private toastr: ToastrService, private router: Router, public http: HttpClient) { }
-
+  constructor(private auth: Authllizer, private toastr: ToastrService, private router: Router) { }
 
   ngOnInit() {
   }
@@ -28,7 +27,7 @@ export class LoginComponent implements OnInit {
     this.auth.signIn(this.user)
       .then(() => {
         this.toastr.success('You have successfully signed in!');
-        this.router.navigateByUrl('/');
+        this.router.navigateByUrl('/dashboard');
         console.log('success');
       })
       .catch(({error,message,status}:HttpErrorResponse) => {
@@ -40,10 +39,10 @@ export class LoginComponent implements OnInit {
 
     this.auth.authenticate(provider)
       .then(() => {
-
         console.log('success');
         this.toastr.success('You have successfully signed in with ' + provider + '!');
-        this.router.navigateByUrl('/home');
+        // localStorage.setItem('isLoggedin', 'true');
+        this.router.navigateByUrl('/dashboard');
       })
       .catch((response: Error | HttpErrorResponse) => {
         console.log('error');
