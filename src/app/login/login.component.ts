@@ -3,7 +3,6 @@ import {Authllizer, OAuth2Provider} from '@authllizer/core';
 import {ToastrService} from 'ngx-toastr';
 import {Router} from '@angular/router';
 import {HttpErrorResponse} from '@angular/common/http';
-import {Users} from '../shared/users';
 
 export interface ISignInUser {
   email?: string;
@@ -38,7 +37,8 @@ export class LoginComponent implements OnInit {
   authenticate(provider: string) {
 
     this.auth.authenticate(provider)
-      .then(() => {
+      .then((result) => {
+        localStorage.setItem('ACCESS_TOKEN',result['key']);
         console.log('success');
         this.toastr.success('You have successfully signed in with ' + provider + '!');
         // localStorage.setItem('isLoggedin', 'true');
