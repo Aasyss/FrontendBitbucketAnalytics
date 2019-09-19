@@ -10,14 +10,16 @@
       <div class="card text-white bg-dark mb-3">
         <div class="card-header card-title">
           <img class="card-img-overlay"  src="https://p7.hiclipart.com/preview/335/521/74/jira-technology-roadmap-computer-software-workflow-bitbucket-others.jpg" alt="Avatar image" style="height: 90px; width: 90px; float: left;">
-          <p style="font-size: 1vw; float: right;" class="font-weight-bold text-white text-uppercase ">Repo Name</p>
-          <!--          <h4 style="float: right;">{{repo.name}}</h4>-->
+          <p style="font-size: 1vw; float: right;" class="font-weight-bold text-white text-uppercase ">{{repo.name}}</p>
         </div>
         <div class="card-body">
 
-          <h5 class="card-text ">Repository General Details</h5>
-          <p>Created On:</p>
-          <p>Owner:</p>
+          <p><strong>UUID:</strong> {{repo.uuid}}</p>
+          <p><strong>Created On:</strong> {{repo.created_on|date:'medium'}}</p>
+          <p><strong>Owner: </strong>{{repo.owner.nickname}}</p>
+          <p><strong>Last Updated: </strong>{{repo.updated_on|date:'medium'}}</p>
+          <p><strong>Private Status: </strong>{{repo.is_private}}</p>
+          <input type="submit" style="float: right" class="btn btn-success btn-sm" value="import" (click)="repositoryImport(repo)">
           <!--          <p>Commits: {{repo.links.commits.href}}</p>-->
         </div>
       </div>

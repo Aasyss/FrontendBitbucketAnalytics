@@ -5,7 +5,7 @@ import {RepositoryComponent} from './repository.component';
 
 const routes: Routes = [
   {
-    path: '',
+    path: ':slug',
     component: RepositoryComponent,
   },
 ];
