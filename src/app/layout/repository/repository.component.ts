@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {RepositoryService} from '../../shared/services';
 import {Repository} from '../../Repository';
 import {DatePipe, formatDate} from '@angular/common';
@@ -15,7 +15,7 @@ export class RepositoryComponent implements OnInit {
   repository = new Repository();
   slug:string;
   repo:any;
-  constructor(private userRepo:RepositoryService,private router:ActivatedRoute) { }
+  constructor(private userRepo:RepositoryService,private router:ActivatedRoute, private route:Router) { }
 
   ngOnInit() {
     //getting the slug from the url params
@@ -51,5 +51,9 @@ export class RepositoryComponent implements OnInit {
       }, (err) => {
         console.log(err);
       });
+  }
+
+  getCommits(){
+    this.route.navigate(['/dashboard/commits']);
   }
 }

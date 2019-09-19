@@ -13,7 +13,8 @@ const routes: Routes = [
             { path: 'charts', loadChildren: () => import('./charts/charts.module').then(m => m.ChartsModule) },
             { path: 'bs-element', loadChildren: () => import('./bs-element/bs-element.module').then(m => m.BsElementModule) },
             { path: 'components', loadChildren: () => import('./bs-component/bs-component.module').then(m => m.BsComponentModule) },
-            { path: 'repository', loadChildren: () => import('./repository/repository.module').then(m => m.RepositoryModule) }
+            { path: 'repository', loadChildren: () => import('./repository/repository.module').then(m => m.RepositoryModule) },
+            {path: 'commits', loadChildren: () => import('./commits/commits.module').then(m => m.CommitsModule)},
         ]
     }
 ];

@@ -38,7 +38,7 @@ export class DashboardComponent implements OnInit {
     }
 
   getRepoSlug(slug: string) {
-    this.router.navigate(['/dashboard/repository', slug]);
+    this.router.navigate(['dashboard/repository', slug]);
   }
 }
 

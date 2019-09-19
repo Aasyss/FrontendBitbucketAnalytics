@@ -1,5 +1,5 @@
 import { Component, Output, EventEmitter, OnInit } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
+import {Router, NavigationEnd, NavigationStart, ActivatedRoute} from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
@@ -14,10 +14,11 @@ export class SidebarComponent implements OnInit {
     pushRightClass: string;
     hideElement = true;
     showElement = false;
+    hide = true;
 
     @Output() collapsedEvent = new EventEmitter<boolean>();
 
-    constructor(private translate: TranslateService, public router: Router) {
+    constructor(private translate: TranslateService, public router: Router, private route: ActivatedRoute) {
         this.router.events.subscribe(val => {
             if (
                 val instanceof NavigationEnd &&
@@ -27,13 +28,15 @@ export class SidebarComponent implements OnInit {
                 this.toggleSidebar();
             }
         });
+
       this.router.events.subscribe((event) => {
-        if (event instanceof NavigationEnd && ((event.url === '/dashboard/repository') || (event.url === '/dashboard/charts'))){
+        if (event instanceof NavigationStart){
           this.hideElement = false;
         }
       });
+
       this.router.events.subscribe((event) => {
-        if (event instanceof NavigationEnd && ((event.url === '/dashboard/repository') || (event.url === '/dashboard/charts'))){
+        if (event instanceof NavigationStart){
           this.showElement = true;
         }
       });
@@ -44,7 +47,10 @@ export class SidebarComponent implements OnInit {
         this.collapsed = false;
         this.showMenu = '';
         this.pushRightClass = 'push-right';
+        this.hide = true;
     }
+
+
 
 
     eventCalled() {
