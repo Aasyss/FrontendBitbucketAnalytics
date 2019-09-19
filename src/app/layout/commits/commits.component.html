@@ -11,20 +11,18 @@
     <th>Hash</th>
     <th>User</th>
     <th>Date</th>
-    <th>Repository</th>
   </tr>
   </thead>
   <!--Table head-->
 
   <!--Table body-->
   <tbody>
-  <tr class="table-info">
-    <th scope="row">1</th>
-    <td>Commit Message</td>
-    <td>Commit Hash</td>
-    <td>User Detail</td>
-    <td>Date</td>
-    <td>Repo Detail</td>
+  <tr class="table-info"*ngFor="let commit of commits">
+    <th scope="row" >1</th>
+    <td>{{commit.message}}</td>
+    <td>{{commit.hash}}</td>
+    <td>{{commit.user}}</td>
+    <td>{{commit.date|date:'medium'}}</td>
   </tr>
   </tbody>
   <!--Table body-->

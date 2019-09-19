@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {Commit} from '../../commit';
+import {ActivatedRoute, Router} from '@angular/router';
+import {CommitsService} from '../../shared/services/commits.service';
 
 @Component({
   selector: 'app-commits',
@@ -6,10 +9,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./commits.component.scss']
 })
 export class CommitsComponent implements OnInit {
+  slug:string;
+  commits: Array<Commit>;
 
-  constructor() { }
+  constructor(private commitsService:CommitsService,private router:ActivatedRoute, private route:Router) { }
 
   ngOnInit() {
+    this.slug= this.router.snapshot.params['slug'];
+    this.getRepositoryCommits(this.slug);
   }
 
+  private getRepositoryCommits(slug: string) {
+    this.commitsService.getAllCommits(slug).subscribe((data)=> {
+        this.commits = data;
+        console.log(this.commits)
+      }
+    );
+  }
 }

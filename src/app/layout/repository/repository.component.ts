@@ -53,7 +53,7 @@ export class RepositoryComponent implements OnInit {
       });
   }
 
-  getCommits(){
-    this.route.navigate(['/dashboard/commits']);
+  getCommits(slug:string){
+    this.route.navigate(['/dashboard/commits/',slug]);
   }
 }

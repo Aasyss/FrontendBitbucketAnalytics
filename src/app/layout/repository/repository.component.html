@@ -19,7 +19,7 @@
           <p><strong>Owner: </strong>{{repo.owner.nickname}}</p>
           <p><strong>Last Updated: </strong>{{repo.updated_on|date:'medium'}}</p>
           <p><strong>Private Status: </strong>{{repo.is_private}}</p>
-          <input type="submit" style="float: left" class="btn btn-success btn-sm" value="Commits" (click)="getCommits()">
+          <input type="submit" style="float: left" class="btn btn-success btn-sm" value="Commits" (click)="getCommits(repo.slug)">
           <input type="submit" style="float: right" class="btn btn-success btn-sm" value="import" (click)="repositoryImport(repo)">
 
           <!--          <p>Commits: {{repo.links.commits.href}}</p>-->
