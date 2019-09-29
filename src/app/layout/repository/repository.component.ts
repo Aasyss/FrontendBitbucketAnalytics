@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {RepositoryService} from '../../shared/services';
-import {Repository} from '../../shared/services/Repository';
+import {Repository} from '../../shared/Repository';
 
 import {ToastrService} from 'ngx-toastr';
 

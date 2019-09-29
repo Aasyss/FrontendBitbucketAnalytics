@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Commit} from '../../shared/services/commit';
+import {Commit} from '../../shared/commit';
 import {ActivatedRoute, Router} from '@angular/router';
 import {CommitsService} from '../../shared/services/commits.service';
 
