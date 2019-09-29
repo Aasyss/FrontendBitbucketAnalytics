@@ -21,6 +21,8 @@ export class RepositoryComponent implements OnInit {
     //getting the slug from the url params
     this.slug= this.router.snapshot.params['slug'];
     this.getRepositoryDetail(this.slug);
+    localStorage.removeItem('slug');
+    localStorage.setItem('slug',this.slug);
   }
   /*
   * method to get the single repository details

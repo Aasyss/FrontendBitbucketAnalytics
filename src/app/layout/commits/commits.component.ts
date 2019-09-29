@@ -14,7 +14,7 @@ export class CommitsComponent implements OnInit {
   constructor(private commitsService:CommitsService,private router:ActivatedRoute, private route:Router) { }
 
   ngOnInit() {
-    this.slug= this.router.snapshot.params['slug'];
+    this.slug= localStorage.getItem('slug');
     this.getRepositoryCommits(this.slug);
   }
 

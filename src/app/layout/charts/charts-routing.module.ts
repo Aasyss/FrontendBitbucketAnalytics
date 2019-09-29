@@ -4,7 +4,7 @@ import { ChartsComponent } from './charts.component';
 
 const routes: Routes = [
     {
-        path: '',
+        path: ':slug',
         component: ChartsComponent
     }
 ];

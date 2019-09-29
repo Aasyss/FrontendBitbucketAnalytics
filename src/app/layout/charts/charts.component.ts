@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { routerTransition } from '../../router.animations';
 import {AnalyticsService} from '../../shared/services/analytics.service';
 import forEach from '@authllizer/core/typings/utils/for-each';
+import {ActivatedRoute} from '@angular/router';
 
 
 // export interface IHash {
@@ -13,12 +14,13 @@ import forEach from '@authllizer/core/typings/utils/for-each';
     animations: [routerTransition()]
 })
 export class ChartsComponent implements OnInit {
+  slug: string;
   userCommits:any;
   userDateCommits:any;
   dateCommits:any;
   pusheditems: { [label: string]:Array<number>; };
 
-  constructor(private analyticsService:AnalyticsService) {}
+  constructor(private analyticsService:AnalyticsService, private router:ActivatedRoute) {}
 
   // bar chart
     public barChartOptions: any = {
@@ -160,9 +162,10 @@ export class ChartsComponent implements OnInit {
 
 
     ngOnInit() {
-      this.getUserCommits('analyticstry2');
-      this.getUserDateCommits('analyticstry2');
-      this.getDateCommits('analyticstry2');
+      this.slug= localStorage.getItem('slug');
+      this.getUserCommits(this.slug);
+      this.getUserDateCommits(this.slug);
+      this.getDateCommits(this.slug);
 
       this.barChartType = 'bar';
       this.barChartLegend = true;

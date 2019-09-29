@@ -15,10 +15,11 @@ export class SidebarComponent implements OnInit {
     hideElement = true;
     showElement = false;
     hide = true;
+    slug : any;
 
     @Output() collapsedEvent = new EventEmitter<boolean>();
 
-    constructor(private translate: TranslateService, public router: Router, private route: ActivatedRoute) {
+    constructor(private translate: TranslateService, public router: Router,private route:ActivatedRoute) {
         this.router.events.subscribe(val => {
             if (
                 val instanceof NavigationEnd &&
@@ -48,6 +49,7 @@ export class SidebarComponent implements OnInit {
         this.showMenu = '';
         this.pushRightClass = 'push-right';
         this.hide = true;
+        this.slug= this.getSlug()
     }
 
 
@@ -79,4 +81,17 @@ export class SidebarComponent implements OnInit {
         const dom: any = document.querySelector('body');
         dom.classList.toggle(this.pushRightClass);
     }
+
+    getSlug(){
+        return localStorage.getItem('slug');
+    }
+    //
+    // getChartSlug(){
+    //   this.router.navigate(['/dashboard/charts/',this.slug]);
+    // }
+    //
+    // getRepoSlug(){
+    //   this.router.navigate(['/dashboard/repository/',this.slug]);
+    // }
+
 }

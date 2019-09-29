@@ -6,21 +6,21 @@
         </a>
     </div>
   <div class="list-group" [hidden]="hideElement"  >
-    <a routerLink="repository" [routerLinkActive]="['router-link-active']" class="list-group-item">
+    <a routerLink="repository/{{slug}}"  class="list-group-item">
       <i class="fa fa-fw fa-bar-chart-o"></i>&nbsp;
       <span>{{ 'General Information' | translate }}</span>
     </a>
   </div>
 
   <div class="list-group " [hidden]="hideElement" >
-    <a routerLink="commits" [routerLinkActive]="['router-link-active']" class="list-group-item">
+    <a routerLink="commits/{{slug}}"  class="list-group-item">
       <i class="fa fa-fw fa-bar-chart-o"></i>&nbsp;
       <span>{{ 'Commits' | translate }}</span>
     </a>
   </div>
 
   <div class="list-group " [hidden]="hideElement">
-        <a routerLink="charts" [routerLinkActive]="['router-link-active']" class="list-group-item">
+        <a routerLink="charts/{{slug}}" class="list-group-item">
             <i class="fa fa-fw fa-bar-chart-o"></i>&nbsp;
             <span>{{ 'Charts' | translate }}</span>
         </a>
