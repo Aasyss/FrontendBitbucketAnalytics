@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {RepositoryService} from '../../shared/services';
 import {Repository} from '../../Repository';
-import {DatePipe, formatDate} from '@angular/common';
-import {pipe} from 'rxjs';
+
+import {ToastrService} from 'ngx-toastr';
 
 
 @Component({
@@ -15,7 +15,7 @@ export class RepositoryComponent implements OnInit {
   repository = new Repository();
   slug:string;
   repo:any;
-  constructor(private userRepo:RepositoryService,private router:ActivatedRoute, private route:Router) { }
+  constructor(private userRepo:RepositoryService,private toastr: ToastrService,private router:ActivatedRoute, private route:Router) { }
 
   ngOnInit() {
     //getting the slug from the url params
@@ -46,8 +46,8 @@ export class RepositoryComponent implements OnInit {
 
     this.userRepo.ImportRepository(this.repository)
       .subscribe(result => {
-        console.log("completed");
-        // this.router.navigate(['books']);
+        this.toastr.success('Repository'+ this.repository.name +' have been successfully imported!');
+
       }, (err) => {
         console.log(err);
       });

@@ -27,17 +27,16 @@ export class LoginComponent implements OnInit {
       .then(() => {
         this.toastr.success('You have successfully signed in!');
         this.router.navigateByUrl('/dashboard');
-        console.log('success');
       })
       .catch(({error,message,status}:HttpErrorResponse) => {
         this.toastr.error(typeof error === 'object' && error.message ? error.message : message, status as any);
-        console.log('error');
       });
   }
   authenticate(provider: string) {
 
     this.auth.authenticate(provider)
       .then((result) => {
+        localStorage.setItem('USER_NAME',result['user']['username']);
         localStorage.setItem('ACCESS_TOKEN',result['key']);
         console.log('success');
         this.toastr.success('You have successfully signed in with ' + provider + '!');

@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { routerTransition } from '../../router.animations';
+import {AnalyticsService} from '../../shared/services/analytics.service';
+import forEach from '@authllizer/core/typings/utils/for-each';
 
+
+// export interface IHash {
+// }
 @Component({
     selector: 'app-charts',
     templateUrl: './charts.component.html',
@@ -8,7 +13,14 @@ import { routerTransition } from '../../router.animations';
     animations: [routerTransition()]
 })
 export class ChartsComponent implements OnInit {
-    // bar chart
+  userCommits:any;
+  userDateCommits:any;
+  dateCommits:any;
+  pusheditems: { [label: string]:Array<number>; };
+
+  constructor(private analyticsService:AnalyticsService) {}
+
+  // bar chart
     public barChartOptions: any = {
         scaleShowVerticalLines: false,
         responsive: true
@@ -31,12 +43,8 @@ export class ChartsComponent implements OnInit {
     ];
 
     // Doughnut
-    public doughnutChartLabels: string[] = [
-        'Download Sales',
-        'In-Store Sales',
-        'Mail-Order Sales'
-    ];
-    public doughnutChartData: number[] = [350, 450, 100];
+    public doughnutChartLabels: string[] = [];
+    public doughnutChartData: number[] = [];
     public doughnutChartType: string;
 
     // Radar
@@ -56,13 +64,13 @@ export class ChartsComponent implements OnInit {
     public radarChartType: string;
 
     // Pie
-    public pieChartLabels: string[] = [
-        'Download Sales',
-        'In-Store Sales',
-        'Mail Sales'
-    ];
-    public pieChartData: number[] = [300, 500, 100];
+    public pieChartLabels: string[]=[];
+    public pieChartData: number[]=[];
     public pieChartType: string;
+    public chartColors: any[] = [
+      {
+        backgroundColor:["#F67360", "#6FC8CE", "#FA00F2", "#F10023", "#FFFCC4"]
+      }];
 
     // PolarArea
     public polarAreaChartLabels: string[] = [
@@ -79,19 +87,11 @@ export class ChartsComponent implements OnInit {
 
     // lineChart
     public lineChartData: Array<any> = [
-        { data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A' },
-        { data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B' },
-        { data: [18, 48, 77, 9, 100, 27, 40], label: 'Series C' }
+        { data: [2, 3, 0, 0, 0], label: 'user' },
+      { data: [0,3,0,0,0], label: 'user2' },
+
     ];
-    public lineChartLabels: Array<any> = [
-        'January',
-        'February',
-        'March',
-        'April',
-        'May',
-        'June',
-        'July'
-    ];
+    public lineChartLabels: Array<any> = [];
     public lineChartOptions: any = {
         responsive: true
     };
@@ -158,17 +158,72 @@ export class ChartsComponent implements OnInit {
          */
     }
 
-    constructor() {}
 
     ngOnInit() {
-        this.barChartType = 'bar';
-        this.barChartLegend = true;
-        this.doughnutChartType = 'doughnut';
-        this.radarChartType = 'radar';
-        this.pieChartType = 'pie';
-        this.polarAreaLegend = true;
-        this.polarAreaChartType = 'polarArea';
-        this.lineChartLegend = true;
-        this.lineChartType = 'line';
+      this.getUserCommits('analyticstry2');
+      this.getUserDateCommits('analyticstry2');
+      this.getDateCommits('analyticstry2');
+
+      this.barChartType = 'bar';
+      this.barChartLegend = true;
+      this.doughnutChartType = 'doughnut';
+      this.radarChartType = 'radar';
+      this.pieChartType = 'pie';
+      this.polarAreaLegend = true;
+      this.polarAreaChartType = 'polarArea';
+      this.lineChartLegend = true;
+      this.lineChartType = 'line';
+
     }
+    //method to populate data into pie chart by subscribing the getUserCommit observable
+    getUserCommits(slug:string){
+      this.analyticsService.getUserCommits(slug).subscribe((data)=> {
+          this.userCommits = data;
+          for (let commit in this.userCommits){
+              this.pieChartLabels.push(this.userCommits[commit].user.toString());
+              this.pieChartData.push(this.userCommits[commit].commit_count);
+          }
+        }
+      );
+    }
+
+  // method to get data from subscribing the getUserDateCommit observable
+      getUserDateCommits(slug:string) {
+        this.analyticsService.getUserDateCommits(slug).subscribe((data)=> {
+          this.userDateCommits = data;
+          console.log("Data",data);
+          for(let date in this.userDateCommits) {
+            console.log(date);
+            this.lineChartLabels.push(date);
+
+              // console.log('user',this.userDateCommits[date][0])
+              // if(this.pusheditems['label']==this.userDateCommits[date].user) {
+              //   this.pusheditems[this.userDateCommits[commit].user.toString()].push(this.userDateCommits[commit].user__count);
+              // }
+              // else{
+              //   console.log('else');
+              //   this.pusheditems['label'].push(this.userDateCommits[commit].user__commits);
+              //
+              // }
+          }
+
+          console.log("date",this.lineChartLabels)
+
+            // { data: [65, 59, 80, 81, 56, 55, 40], label: 'user' },
+        });
+      }
+
+  // method to get data from subscribing the getUserDateCommit observable
+  getDateCommits(slug:string) {
+    this.analyticsService.getDateCommits(slug).subscribe((result)=> {
+      this.dateCommits = result;
+
+      for (let commit in this.dateCommits){
+        this.doughnutChartLabels.push(this.dateCommits[commit].date.toString());
+        this.doughnutChartData.push(this.dateCommits[commit].date__count);
+      }
+    });
+  }
+
+
 }

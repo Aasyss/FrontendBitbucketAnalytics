@@ -11,7 +11,6 @@ import {CommitsService} from '../../shared/services/commits.service';
 export class CommitsComponent implements OnInit {
   slug:string;
   commits: Array<Commit>;
-
   constructor(private commitsService:CommitsService,private router:ActivatedRoute, private route:Router) { }
 
   ngOnInit() {
