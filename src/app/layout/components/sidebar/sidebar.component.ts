@@ -1,6 +1,5 @@
 import { Component, Output, EventEmitter, OnInit } from '@angular/core';
-import {Router, NavigationEnd, NavigationStart, ActivatedRoute} from '@angular/router';
-import { TranslateService } from '@ngx-translate/core';
+import {Router, NavigationEnd, NavigationStart} from '@angular/router';
 
 @Component({
     selector: 'app-sidebar',
@@ -19,7 +18,7 @@ export class SidebarComponent implements OnInit {
 
     @Output() collapsedEvent = new EventEmitter<boolean>();
 
-    constructor(private translate: TranslateService, public router: Router,private route:ActivatedRoute) {
+    constructor(public router: Router) {
         this.router.events.subscribe(val => {
             if (
                 val instanceof NavigationEnd &&
@@ -51,22 +50,6 @@ export class SidebarComponent implements OnInit {
         this.hide = true;
         this.slug= this.getSlug()
     }
-
-
-
-
-    eventCalled() {
-        this.isActive = !this.isActive;
-    }
-
-    addExpandClass(element: any) {
-        if (element === this.showMenu) {
-            this.showMenu = '0';
-        } else {
-            this.showMenu = element;
-        }
-    }
-
     toggleCollapsed() {
         this.collapsed = !this.collapsed;
         this.collapsedEvent.emit(this.collapsed);
@@ -85,13 +68,4 @@ export class SidebarComponent implements OnInit {
     getSlug(){
         return localStorage.getItem('slug');
     }
-    //
-    // getChartSlug(){
-    //   this.router.navigate(['/dashboard/charts/',this.slug]);
-    // }
-    //
-    // getRepoSlug(){
-    //   this.router.navigate(['/dashboard/repository/',this.slug]);
-    // }
-
 }

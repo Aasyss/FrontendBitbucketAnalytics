@@ -40,7 +40,9 @@ export class HeaderComponent implements OnInit {
     }
 
     onLoggedout() {
+        localStorage.removeItem('ACCESS_TOKEN');
         localStorage.removeItem('isLoggedin');
+        localStorage.removeItem('USER_NAME');
     }
 
 }

@@ -3,27 +3,28 @@ import {ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot} from '@angular
 import { Router } from '@angular/router';
 import {Observable} from 'rxjs';
 import {Authllizer} from '@authllizer/core';
+import {LoginService} from '../services';
 
 @Injectable()
+
 // export class AuthGuard implements CanActivate {
-//     constructor(private router: Router) {}
 //
-//     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-//         if (localStorage.getItem('isLoggedin')) {
-//             return true;
-//         }
+//   constructor(private loginService: LoginService){}
 //
-//         this.router.navigate(['/login']);
-//         return false;
-//     }
+//   canActivate(next: ActivatedRouteSnapshot,
+//               state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
+//     return this.loginService.isLoggedIn();
+//   }
+//
 // }
+
 export class AuthGuard implements CanActivate {
 
   constructor(private router: Router){}
 
   canActivate(next: ActivatedRouteSnapshot,
               state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-    if (localStorage.getItem('isLoggedin')) {
+    if (localStorage.getItem('ACCESS_TOKEN')) {
             return true;
         }
 

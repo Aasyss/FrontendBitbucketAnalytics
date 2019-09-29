@@ -7,7 +7,8 @@ import { LayoutRoutingModule } from './layout-routing.module';
 import { LayoutComponent } from './layout.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { HeaderComponent } from './components/header/header.component';
-import { CommitsComponent } from './commits/commits.component';
+import {HTTP_INTERCEPTORS} from '@angular/common/http';
+import {MyInterceptor} from '../shared/interceptor';
 
 
 @NgModule({
@@ -17,6 +18,7 @@ import { CommitsComponent } from './commits/commits.component';
         TranslateModule,
         NgbDropdownModule,
     ],
-    declarations: [LayoutComponent, SidebarComponent, HeaderComponent]
+    declarations: [LayoutComponent, SidebarComponent, HeaderComponent],
+    // providers:[{provide:HTTP_INTERCEPTORS,useClass:MyInterceptor,multi:true}]
 })
 export class LayoutModule {}

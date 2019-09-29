@@ -16,6 +16,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ToastrModule} from 'ngx-toastr';
 import {SidebarModule} from 'ng-sidebar';
 import {LanguageTranslationModule} from './shared/modules/language-translation/language-translation.module';
+import {AuthGuard} from './shared/guard';
 
 // let baseUrl;
 // baseUrl = environment.backendUrl;
@@ -50,7 +51,7 @@ import {LanguageTranslationModule} from './shared/modules/language-translation/l
 
     SidebarModule
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {RepositoryService} from '../../shared/services';
-import {Repository} from '../../Repository';
+import {Repository} from '../../shared/services/Repository';
 
 import {ToastrService} from 'ngx-toastr';
 
@@ -21,7 +21,6 @@ export class RepositoryComponent implements OnInit {
     //getting the slug from the url params
     this.slug= this.router.snapshot.params['slug'];
     this.getRepositoryDetail(this.slug);
-    localStorage.removeItem('slug');
     localStorage.setItem('slug',this.slug);
   }
   /*
