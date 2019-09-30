@@ -20,7 +20,7 @@
         <div class="col col-sm-8">
             <div class="card mb-3">
                 <div class="card-header">
-                    Doughnut Chart
+                    Total Commits in <strong>{{slug}}</strong> each day
                 </div>
                 <div class="card-body">
                     <canvas baseChart height="180px" [colors]="chartColors" [data]="doughnutChartData" [labels]="doughnutChartLabels" [chartType]="doughnutChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
@@ -33,7 +33,7 @@
         <div class="col col-sm-8">
             <div class="card mb-3">
                 <div class="card-header">
-                    Commit count in analyticstry2
+                    Commit count in <strong>{{slug}}</strong>
                 </div>
                 <div class="card-body">
                     <canvas baseChart height="150px" [colors]="chartColors" [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
@@ -46,11 +46,34 @@
         <div class="col col-sm-8">
             <div class="card mb-3">
                 <div class="card-header">
-                    Line Chart
+                    Total commits in each day by a user <strong>{{slug}}</strong>
                 </div>
                 <div>
-                    <canvas baseChart height="130" [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
-                    </canvas>
+<!--                    <canvas baseChart height="130" [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">-->
+<!--                    </canvas>-->
+                  <table class="table table-striped">
+                    <!--Table head-->
+                    <thead>
+                    <tr>
+                      <th>Date</th>
+                      <th>Commited By</th>
+                      <th>Total Commits</th>
+                    </tr>
+                    </thead>
+                    <!--Table head-->
+
+                    <!--Table body-->
+                    <tbody>
+                    <tr class="table-info"*ngFor="let commit of userDateCommits">
+                      <td>{{commit.date|date:'longDate'}}</td>
+                      <td>{{commit.user}}</td>
+                      <td>{{commit.user__count}}</td>
+                    </tr>
+                    </tbody>
+                    <!--Table body-->
+
+
+                  </table>
                 </div>
             </div>
         </div>
