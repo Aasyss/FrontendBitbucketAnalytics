@@ -17,10 +17,10 @@
 <!--    </div>-->
 <!--  </div>-->
     <div class="row">
-        <div class="col col-sm-8">
+        <div class="col col-sm-6">
             <div class="card mb-3">
                 <div class="card-header">
-                    Total Commits in <strong>{{slug}}</strong> each day
+                    Total Commits in <strong>{{slug}}</strong> by date
                 </div>
                 <div class="card-body">
                     <canvas baseChart height="180px" [colors]="chartColors" [data]="doughnutChartData" [labels]="doughnutChartLabels" [chartType]="doughnutChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
@@ -28,22 +28,23 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col col-sm-8">
+
+<!--    <div class="row">-->
+        <div class="col col-sm-6">
             <div class="card mb-3">
                 <div class="card-header">
-                    Commit count in <strong>{{slug}}</strong>
+                    User commit count in <strong>{{slug}}</strong>
                 </div>
                 <div class="card-body">
-                    <canvas baseChart height="150px" [colors]="chartColors" [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
+                    <canvas baseChart height="180px" [colors]="chartColors" [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
                     </canvas>
                 </div>
             </div>
         </div>
     </div>
+<!--    </div>-->
     <div class="row">
-        <div class="col col-sm-8">
+        <div class="col col-sm-6">
             <div class="card mb-3">
                 <div class="card-header">
                     Total commits in each day by a user <strong>{{slug}}</strong>
@@ -64,7 +65,7 @@
 
                     <!--Table body-->
                     <tbody>
-                    <tr class="table-info"*ngFor="let commit of userDateCommits">
+                    <tr class="table-info" *ngFor="let commit of userDateCommits">
                       <td>{{commit.date|date:'longDate'}}</td>
                       <td>{{commit.user}}</td>
                       <td>{{commit.user__count}}</td>

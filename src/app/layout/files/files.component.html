@@ -1,0 +1,32 @@
+<div class="container">
+  <h2 class="text-muted">Files in <small>{{slug}}</small></h2>
+
+  <!--Table-->
+  <table class="table table-striped ">
+    <!--Table head-->
+    <thead>
+    <tr>
+      <th>Message</th>
+      <th>Hash</th>
+      <th>Commited By</th>
+    </tr>
+    </thead>
+    <!--Table head-->
+
+    <!--Table body-->
+    <tbody>
+    <tr class="table-info"*ngFor="let file of files">
+      <td>{{file.name}}</td>
+      <td>{{file.type}}</td>
+
+      <td><button class="btn btn-sm btn-info" (click)="viewHistory(slug,file.name,file.change_log_url)">view history</button></td>
+<!--      <td><a class="btn btn-info btn-sm" href="{{file.change_log_url}}?fields=values.next,values.path,values.commit.date,values.commit.message,values.commit.author.user.uuid,values.commit.author.user.nickname-->
+<!--">view history</a></td>-->
+    </tr>
+    </tbody>
+    <!--Table body-->
+
+
+  </table>
+  <!--Table-->
+</div>

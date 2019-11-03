@@ -33,7 +33,6 @@ export class LoginComponent implements OnInit {
         this.router.navigateByUrl('/dashboard');
       })
       .catch((response: Error | HttpErrorResponse) => {
-        console.log('error');
         if ((response as HttpErrorResponse).error) {
           let {error} = (response as HttpErrorResponse);
           this.toastr.error(typeof error === 'object' && error.message  ? error.message : error);

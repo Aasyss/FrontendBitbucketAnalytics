@@ -9,6 +9,8 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { HeaderComponent } from './components/header/header.component';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {MyInterceptor} from '../shared/interceptor';
+import { FileHistoryComponent } from './file-history/file-history.component';
+
 
 
 @NgModule({

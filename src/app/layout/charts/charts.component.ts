@@ -111,7 +111,7 @@ export class ChartsComponent implements OnInit {
       getUserDateCommits(slug:string) {
         this.analyticsService.getUserDateCommits(slug).subscribe((data)=> {
           this.userDateCommits = data;
-          console.log("Data",data);
+          console.log("Data",this.userDateCommits);
 
           // for(let date in this.userDateCommits) {
           //   this.counter=0;

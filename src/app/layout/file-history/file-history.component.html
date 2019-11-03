@@ -1,0 +1,33 @@
+<div class="container">
+  <h2 class="text-muted">Change log history of <small>{{name}}</small></h2>
+
+  <!--Table-->
+  <table class="table table-striped ">
+    <!--Table head-->
+    <thead>
+    <tr>
+      <th>Commited By</th>
+      <th>Message</th>
+      <th>file name</th>
+      <th>Change date</th>
+
+
+    </tr>
+    </thead>
+    <!--Table head-->
+
+    <!--Table body-->
+    <tbody>
+    <tr class="table-info"*ngFor="let file of fileHistory">
+      <td>{{file.commit.author.user.nickname}}</td>
+      <td>{{file.commit.message}}</td>
+      <td>{{file.path}}</td>
+      <td>{{file.commit.date|date:'medium'}}</td>
+    </tr>
+    </tbody>
+    <!--Table body-->
+
+
+  </table>
+  <!--Table-->
+</div>
